@@ -34,7 +34,7 @@ productsRouter.post("/", (req, res) => {
     writeJSON(productsJSONPath, productsArray);
     res.status(201).send({ id: newReview.id });
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 productsRouter.get("/", (req, res) => {
@@ -42,7 +42,7 @@ productsRouter.get("/", (req, res) => {
     const productsArray = getJSON(productsJSONPath);
     res.status(200).send(productsArray);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 productsRouter.get("/:productId", (req, res) => {
@@ -53,7 +53,7 @@ productsRouter.get("/:productId", (req, res) => {
     );
     res.send(product);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 productsRouter.put("/:productId", (req, res) => {
@@ -72,7 +72,7 @@ productsRouter.put("/:productId", (req, res) => {
     writeJSON(productsJSONPath, productsArray);
     res.send(updatedProduct);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 productsRouter.delete("/:productId", (req, res) => {
@@ -84,7 +84,7 @@ productsRouter.delete("/:productId", (req, res) => {
     writeJSON(productsJSONPath, remainingProducts);
     res.status(204).send();
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 export default productsRouter;

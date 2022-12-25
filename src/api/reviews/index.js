@@ -34,7 +34,7 @@ reviewsRouter.post("/", (req, res) => {
     writeJSON(reviewsJSONPath, reviewsArray);
     res.status(201).send({ id: newReview.id });
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 
@@ -43,7 +43,7 @@ reviewsRouter.get("/", (req, res) => {
     const reviewsArray = getJSON(reviewsJSONPath);
     res.status(200).send(reviewsArray);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 
@@ -55,7 +55,7 @@ reviewsRouter.get("/reviewId", (req, res) => {
     );
     res.send(review);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 
@@ -71,7 +71,7 @@ reviewsRouter.put("/reviewId", (req, res) => {
     writeJSON(reviewsJSONPath, reviewsArray);
     res.send(updatedReview);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 
@@ -84,7 +84,7 @@ reviewsRouter.delete("/reviewId", (req, res) => {
     writeJSON(reviewsJSONPath, remainingReviews);
     res.status(204).send();
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 
