@@ -2,7 +2,12 @@ import express from "express";
 import listEndpoints from "express-list-endpoints";
 import productsRouter from "./api/products/index.js";
 import reviewsRouter from "./api/reviews/index.js";
-import { genericErrorHandler } from "./errorHandlers.js";
+import {
+  badRequestHandler,
+  genericErrorHandler,
+  notFoundHandler,
+  unauthorizedHandler,
+} from "./errorHandlers.js";
 
 const server = express();
 const port = 3001;
@@ -16,6 +21,9 @@ server.use("/products/productId/reviews", reviewsRouter);
 
 // ******** ERROR HANDLERS
 
+server.use(badRequestHandler);
+server.use(unauthorizedHandler);
+server.use(notFoundHandler);
 server.use(genericErrorHandler);
 
 server.listen(port, () => {
