@@ -29,8 +29,8 @@ reviewsRouter.post(
       };
       reviewsArray.push(newReview);
       await writeReviews(reviewsArray);
-      res.status(201).send({ id: newReview.id });
-      console.log(`new review to product ${req.params.product} added!`);
+      res.status(201).send({ id: newReview.reviewId });
+      console.log(`new review to product ${req.params.productId} added!`);
     } catch (error) {
       next(error);
     }

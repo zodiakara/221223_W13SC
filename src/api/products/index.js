@@ -29,7 +29,7 @@ productsRouter.post(
       const productsArray = await getProducts();
       productsArray.push(newProduct);
       await writeProducts(productsArray);
-      res.status(201).send({ id: newProduct.id });
+      res.status(201).send({ id: newProduct.productId });
     } catch (error) {
       next(error);
     }
@@ -49,7 +49,7 @@ productsRouter.get("/:productId", async (req, res, next) => {
   try {
     const productsArray = await getProducts();
     const product = productsArray.find(
-      (product) => product.id === req.params.productId
+      (product) => product.productId === req.params.productId
     );
 
     if (product) {
@@ -67,7 +67,7 @@ productsRouter.put("/:productId", async (req, res, next) => {
   try {
     const productsArray = await getProducts();
     const index = productsArray.findIndex(
-      (product) => product.id === req.params.productId
+      (product) => product.productId === req.params.productId
     );
     const oldProduct = productsArray[index];
     const updatedProduct = {
@@ -86,7 +86,7 @@ productsRouter.delete("/:productId", async (req, res, next) => {
   try {
     const productsArray = await getProducts();
     const remainingProducts = productsArray.filter(
-      (product) => product.id !== req.params.productId
+      (product) => product.productId !== req.params.productId
     );
     await writeProducts(remainingProducts);
     res.status(204).send();
