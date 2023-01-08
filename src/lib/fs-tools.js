@@ -8,6 +8,7 @@ const dataFolderPath = join(dirname(fileURLToPath(import.meta.url)), "../data");
 const publicFolderPath = join(process.cwd(), "./public/img/products");
 
 console.log("data folder path --->", dataFolderPath);
+console.log("public folder path --->", publicFolderPath);
 
 const productsJSONPath = join(dataFolderPath, "products.json");
 const reviewsJSONPath = join(dataFolderPath, "reviews.json");

@@ -17,6 +17,8 @@ const port = 3001;
 
 const publicFolderPath = join(process.cwd(), "./public");
 
+// ******** MIDDLEWARES
+
 server.use(express.static(publicFolderPath));
 server.use(cors());
 server.use(express.json());
@@ -24,8 +26,8 @@ server.use(express.json());
 // ******** ENDPOINTS
 
 server.use("/products", productsRouter);
-server.use("/product", filesRouter);
-server.use("/products/productId/reviews", reviewsRouter);
+server.use("/products", filesRouter);
+server.use("/products", reviewsRouter); ///:productId/reviews/:reviewId
 
 // ******** ERROR HANDLERS
 
