@@ -47,7 +47,7 @@ reviewsRouter.get("/", (req, res) => {
   }
 });
 
-reviewsRouter.get("/reviewId", (req, res) => {
+reviewsRouter.get("/:reviewId", (req, res) => {
   try {
     const reviewsArray = getJSON(reviewsJSONPath);
     const review = reviewsArray.find(
@@ -59,7 +59,7 @@ reviewsRouter.get("/reviewId", (req, res) => {
   }
 });
 
-reviewsRouter.put("/reviewId", (req, res) => {
+reviewsRouter.put("/:reviewId", (req, res) => {
   try {
     const reviewsArray = getJSON(reviewsJSONPath);
     const index = reviewsArray.findIndex(
@@ -75,7 +75,7 @@ reviewsRouter.put("/reviewId", (req, res) => {
   }
 });
 
-reviewsRouter.delete("/reviewId", (req, res) => {
+reviewsRouter.delete("/:reviewId", (req, res) => {
   try {
     const reviewsArray = getJSON(reviewsJSONPath);
     const remainingReviews = reviewsArray.filter(
